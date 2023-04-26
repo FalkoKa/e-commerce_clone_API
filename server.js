@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const config = require('./config');
 const expressLayouts = require('express-ejs-layouts');
+const errorHandler = require('./middlewares/error_handler');
 
 app.set('view engine', 'ejs');
 
@@ -13,6 +14,8 @@ app.use(require('./middlewares/method_override'));
 app.get('/', (req, res) => {
   res.render('home');
 });
+
+app.use(errorHandler);
 
 app.listen(config.port, () => {
   console.log(`listening on port ${config.port}`);
