@@ -36,6 +36,7 @@ CREATE TABLE product (
     price NUMERIC NOT NULL,
     count_in_stock INTEGER NOT NULL,
     brand TEXT,
+    color TEXT,
     description TEXT
 );
 
@@ -54,30 +55,32 @@ CREATE TABLE shopping_cart_item (
 );
 
 
-CREATE TABLE payment_method??? (
-user_id foreign key
-payment_type TEXT [paypal, creditcard]
-provider TEXT 
-account_number INTEGER
-expiry_date DATE
-is_default BOOLEAN
+-- maybe separate table
+CREATE TABLE payment_method (
+    user_id foreign key, 
+    payment_type TEXT [paypal, creditcard],
+    provider TEXT,
+    account_number INTEGER,
+    expiry_date DATE,
+    is_default BOOLEAN
 );
 
 
--- Products ordered and paid by customer?
+-- captures order placed by user
+CREATE TABLE shop_order (
+    id SERIAL PRIMARY KEY, 
+    user_id INTEGER REFERENCES user (id) ON DELETE CASCADE,
+    order_date DATE DEFAULT Now(),
+    paymemnt_method_id INTEGER REFERENCES shopping_cart (user_payment_method) ON DELETE CASCADE,
+    order_total NUMERIG NOT NULL,
+    order_status TEXT [processing, shipped, delivered]
+);
+
+-- Products ordered by customer?
 CREATE TABLE order_line (
     id SERIAL PRIMARY KEY, 
     product_id INTEGER REFERENCES product (id) ON DELETE CASCADE,
     order_id INTEGER REFERENCES shop_order (id) ON DELETE CASCADE,
     quantity INTEGER NOT NULL,
     price NUMERIC NOT NULL
-);
-
-CREATE TABLE shop_order (
-    id SERIAL PRIMARY KEY, 
-    user_id INTEGER REFERENCES user (id) ON DELETE CASCADE,
-    order_date TIMESTAMP NOW(),
-    paymemnt_method_id INTEGER REFERENCES shopping_cart (user_payment_method) ON DELETE CASCADE,
-    order_total NUMERIG NOT NULL,
-    order_status TEXT [prepare, shipped, delivered]
 );
