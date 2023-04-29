@@ -32,7 +32,7 @@ data = [
     rating: 2,
     numReviews: 10,
     images: [
-      'https://img01.ztat.net/article/spp-media-p1/01c0fae5fe684637bf5bbd38cc102e64/bd2fa8ef4fe5409892e43ec4385a5355.jpg?imwidth=1800',
+      '/*',
       'https://img01.ztat.net/article/spp-media-p1/1a7a57fc67b54a0f82747b44453581a7/3b0cbadd98964537837d9bc5efcd3608.jpg?imwidth=1800',
     ],
   },

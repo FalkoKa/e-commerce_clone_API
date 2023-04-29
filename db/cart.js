@@ -1,16 +1,16 @@
-const cart = {
-  shippingAddress: {
-    street: 'Schoenauserstrasse 16',
-    zipCode: '67547',
-    city: 'Worms',
-    country: 'Germany',
+const mongoose = require('mongoose');
+
+const cartSchema = new mongoose.Schema({
+  cart: {
+    user: { type: mongoose.SchemaTypes.ObjectId, ref: 'User' },
+    ordered: Boolean,
+    items: [
+      {
+        quantity: Number,
+        item: { type: mongoose.SchemaTypes.ObjectId, ref: 'Product' },
+      },
+    ],
   },
-  paymentMethod: 'PayPal',
-  items: [
-    {
-      quantity: 1,
-      item: {},
-    },
-    { quantity: 2, item: {} },
-  ],
-};
+});
+
+module.exports = mongoose.model('Cart', cartSchema);

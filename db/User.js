@@ -1,22 +1,16 @@
 const mongoose = require('mongoose');
 
 const userSchema = new mongoose.Schema({
-  fullName: String,
-  email: String,
-  password_digest: String,
-  createdAt: Date,
+  fullName: { type: String, required: [true, 'Please enter you full Name'] },
+  email: {
+    type: String,
+    required: [true, 'Please enter your email address'],
+    lowercase: true,
+    minLength: 5,
+  },
+  password_digest: { type: String, required: true },
+  createdAt: { type: Date, default: () => Date.now(), immutable: true },
   isAdmin: Boolean,
-  shippingAddress: {
-    street: String,
-    city: String,
-    zipCode: String,
-    country: String,
-  },
-  cart: {
-    paymentMethod: String,
-    status: String,
-    items: [{ quantity: Number, item: mongoose.SchemaTypes.ObjectId }],
-  },
 });
 
 module.exports = mongoose.model('User', userSchema);
