@@ -20,11 +20,7 @@ app.use(express.urlencoded({ extended: true })); // don't need?
 app.use(express.json());
 app.use(require('./middlewares/method_override')); // don't need?
 
-function checkToken(req, res, next) {
-  // lets look inside the request header for a jwt
-
-  // "Authorization": "Bearer a;lskdjf;laksjdfl aksjdlfajsldjflasdj"
-
+function checkAuth(req, res, next) {
   let token = req.get('Authorization') || req.query.token;
   if (token) {
     token = token.replace('Bearer ', '');
@@ -43,7 +39,23 @@ function checkToken(req, res, next) {
   }
 }
 
-app.get('/', checkToken, (req, res) => {
+function checkToken(req, res, next) {
+  let token = req.get('Authorization') || req.query.token;
+  if (token) {
+    token = token.replace('Bearer ', '');
+    jwt.verify(token, process.env.SECRET, (err, decoded) => {
+      req.user = err ? null : decoded;
+      return next();
+    });
+  } else {
+    req.user = null;
+    next();
+  }
+}
+
+app.use(checkToken);
+
+app.get('/', checkAuth, (req, res) => {
   res.json({ test: 'string' });
 });
 
