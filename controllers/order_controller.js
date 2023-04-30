@@ -46,16 +46,3 @@ router.get('/:id', async (req, res, next) => {
 });
 
 module.exports = router;
-
-// {
-//     "id": "644c972c0769daed56fc6010",
-//     "paymentMethod": "PayPal",
-//     "shippingAddress": {
-//         "street": "Schoenauerstrasse 16",
-//         "city": "Worms",
-//         "zipCode": "67547",
-//         "country": "Germany"
-//     },
-//     "cartID": "644cd381af6c5052e2ac0c96",
-//     "orderTotal": 323.23
-// }

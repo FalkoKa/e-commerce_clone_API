@@ -108,4 +108,18 @@ router.delete('/:id', async (req, res, next) => {
   }
 });
 
+// delete all items from cart after order submitted
+router.delete('/delete/:id', async (req, res, next) => {
+  const { id } = req.params;
+
+  try {
+    const cart = await Cart.updateOne({ user: id }, { $set: { items: [] } });
+
+    const updatedCart = await Cart.findOne({ user: id }).populate('user');
+    res.json(updatedCart);
+  } catch (error) {
+    console.log(error);
+  }
+});
+
 module.exports = router;
