@@ -98,7 +98,10 @@ router.delete('/:id', async (req, res, next) => {
       { $pull: { items: { item: itemId } } }
     );
 
-    const updatedCart = await Cart.findOne({ user: id });
+    const updatedCart = await Cart.findOne({ user: id }).populate({
+      path: 'items',
+      populate: { path: 'item' },
+    });
     res.json(updatedCart);
   } catch (error) {
     console.log(error);
