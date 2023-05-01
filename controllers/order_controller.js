@@ -58,13 +58,21 @@ router.get('/all/:id', async (req, res, next) => {
 
 router.get('/id/:id', async (req, res, next) => {
   const { id } = req.params;
+  const { itemID } = req.body;
 
   try {
-    const order = await Order.findById(id);
-
-    const populatedOrder = await order.populate('orderedItems.items');
-    console.log(populatedOrder);
-    res.json(order);
+    const orders = await Order.find({ user: id }).populate('orderedItems');
+    const orderedItemsIDs = orders
+      .map((order) => order.orderedItems)
+      .reduce((arr, orderItem) => {
+        return [...arr, ...orderItem];
+      }, [])
+      .map((i) => {
+        return i.items.toString().split('"')[0];
+      })
+      .includes(itemID);
+    console.log(orderedItemsIDs);
+    res.json({ purchased: orderedItemsIDs });
   } catch (error) {
     console.log(error);
   }

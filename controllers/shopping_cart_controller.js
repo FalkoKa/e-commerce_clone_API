@@ -67,10 +67,7 @@ router.put('/:id', async (req, res, next) => {
     const cart = await Cart.updateOne(
       { user: id, 'items.item': itemID },
       {
-        $set: {
-          'items.$quantity': quantity,
-          'items.$item': itemID,
-        },
+        $set: { 'items.$': { quantity: quantity, item: itemID } },
       }
     );
     console.log(cart);
