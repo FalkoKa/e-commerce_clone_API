@@ -56,4 +56,18 @@ router.get('/all/:id', async (req, res, next) => {
   }
 });
 
+router.get('/id/:id', async (req, res, next) => {
+  const { id } = req.params;
+
+  try {
+    const order = await Order.findById(id);
+
+    const populatedOrder = await order.populate('orderedItems.items');
+    console.log(populatedOrder);
+    res.json(order);
+  } catch (error) {
+    console.log(error);
+  }
+});
+
 module.exports = router;

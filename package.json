@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/FalkoKa/e-commerce_clone_API#readme",
   "dependencies": {
+    "@paypal/checkout-server-sdk": "^1.0.3",
     "axios": "^1.4.0",
     "bcrypt": "^5.1.0",
     "cors": "^2.8.5",
@@ -30,7 +31,8 @@
     "jsonwebtoken": "^9.0.0",
     "method-override": "^3.0.0",
     "mongoose": "^7.1.0",
-    "pg": "^8.10.0"
+    "pg": "^8.10.0",
+    "stripe": "^12.3.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.22"
