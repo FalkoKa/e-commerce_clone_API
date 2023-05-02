@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const Cart = require('./../db/Cart');
-const User = require('./../db/User');
-const Product = require('./../db/Product');
+const Cart = require('../db/Cart');
+const User = require('../db/User');
+const Product = require('../db/Product');
 
 // upon signup
 router.post('/new', async (req, res, next) => {

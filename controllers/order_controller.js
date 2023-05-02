@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const Order = require('./../db/Order');
-const User = require('./../db/User');
-const Product = require('./../db/Product');
+const Order = require('../db/Order');
+const User = require('../db/User');
+const Product = require('../db/Product');
 
 // upon click order
 router.post('/new', async (req, res, next) => {

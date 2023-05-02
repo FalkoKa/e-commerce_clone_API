@@ -1,10 +1,10 @@
 const express = require('express');
 const router = express.Router();
-const User = require('./../db/User');
-const Cart = require('./../db/Cart');
+const User = require('../db/User');
+const Cart = require('../db/Cart');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
-const create = require('./../models/user_model');
+const create = require('../models/user_model');
 
 function createJsonWebToken(data) {
   return jwt.sign({ id: data.id, email: data.email }, process.env.SECRET, {

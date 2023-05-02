@@ -1,5 +1,5 @@
 const bcrypt = require('bcrypt');
-const User = require('./../db/User');
+const User = require('../db/User');
 
 function create(name, email, password) {
   console.log(name);
