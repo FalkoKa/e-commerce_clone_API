@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const Cart = require('../db/Cart.js');
+const Cart = require('../db/cart.js');
 const User = require('../db/User');
 const Product = require('../db/Product');
 
