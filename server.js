@@ -45,9 +45,7 @@ const userController = require('./controllers/user_controller');
 
 app.set('view engine', 'ejs');
 
-// app.use(cors({
-//   origin: "https://falkoka.github.io/e-commerce_clone_react/"
-// }))
+app.use(cors());
 
 app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true })); // don't need?
