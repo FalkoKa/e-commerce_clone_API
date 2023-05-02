@@ -3,7 +3,7 @@ const config = require('../config');
 const Product = require('./Product');
 const create = require('../models/user_model');
 const Order = require('./Order');
-const Cart = require('./Cart');
+const Cart = require('./Cart.js');
 
 mongoose
   .connect(process.env.DATABASE_URL)
