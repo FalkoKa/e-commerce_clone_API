@@ -56,7 +56,7 @@ router.get('/all/:id', async (req, res, next) => {
   }
 });
 
-router.get('/id/:id', async (req, res, next) => {
+router.post('/id/:id', async (req, res, next) => {
   const { id } = req.params;
   const { itemID } = req.body;
 

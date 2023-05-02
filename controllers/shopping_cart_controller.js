@@ -23,6 +23,7 @@ router.post('/new', async (req, res, next) => {
 // get single cart from a user
 router.get('/:id', async (req, res, next) => {
   const { id } = req.params;
+  console.log(id);
   try {
     const cart = await Cart.findOne({ user: id })
       .populate({
