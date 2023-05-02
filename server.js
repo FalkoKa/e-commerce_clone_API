@@ -39,7 +39,6 @@ const storeItems = new Map([
 
 // controller
 const producteController = require('./controllers/product_controller');
-const adminController = require('./controllers/admin_controller');
 const orderController = require('./controllers/order_controller');
 const shoppingCartController = require('./controllers/shopping_cart_controller');
 const userController = require('./controllers/user_controller');
@@ -91,7 +90,6 @@ app.get('/', checkAuth, (req, res) => {
 });
 
 app.use('/api/v1/product', producteController);
-app.use('/api/v1/admin', adminController);
 app.use('/api/v1/order', orderController);
 app.use('/api/v1/cart', shoppingCartController);
 app.use('/api/v1/user', userController);
