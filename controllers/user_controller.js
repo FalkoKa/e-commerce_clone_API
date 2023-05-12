@@ -7,7 +7,8 @@ const bcrypt = require('bcrypt');
 const create = require('../models/user_model');
 
 function createJsonWebToken(data) {
-  return jwt.sign({ id: data.id, email: data.email }, process.env.SECRET, {
+  return jwt.sign({ _id: data.id, email: data.email }, process.env.SECRET, {
+    // added _ before id
     expiresIn: '24h',
   });
 }
