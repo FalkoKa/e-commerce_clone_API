@@ -117,8 +117,8 @@ app.post('/create-checkout-session', async (req, res, next) => {
           quantity: item.quantity,
         };
       }),
-      success_url: `${process.env.SERVER_URL}/checkout/success`,
-      cancel_url: `${process.env.SERVER_URL}/canceled`,
+      success_url: `${process.env.SERVER_URL}?success=true`,
+      cancel_url: `${process.env.SERVER_URL}?conceled=true`,
     });
     console.log(session.payment_status);
 
