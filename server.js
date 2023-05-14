@@ -117,11 +117,11 @@ app.post('/create-checkout-session', async (req, res, next) => {
           quantity: item.quantity,
         };
       }),
-      success_url: `${process.env.SERVER_URL}?success=true`,
-      cancel_url: `${process.env.SERVER_URL}?conceled=true`,
+      success_url: `${process.env.SERVER_URL}/confirm?success=true`,
+      cancel_url: `${process.env.SERVER_URL}/confirm?conceled=true`,
     });
     console.log(session.payment_status);
-
+    // res.redirect(303, session.url);
     res.json({ url: session.url });
   } catch (error) {
     console.log(error);
